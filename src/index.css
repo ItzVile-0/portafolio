@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cyan: #00d4ff;
+    --color-violet: #6c63ff;
+    --color-bg: #070712;
+    --color-surface: #0d0d1f;
+    --color-card: #111128;
+    --color-border: #1e1e3a;
+    --color-text: #e2e8f0;
+    --color-muted: #64748b;
+    --color-subtle: #94a3b8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-[#070712] text-slate-200;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #070712; }
+  ::-webkit-scrollbar-thumb { background: #1e1e3a; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00d4ff33; }
+
+  ::selection { background: rgba(0, 212, 255, 0.2); color: #f8fafc; }
+}
+
+@layer components {
+  .section-wrapper {
+    @apply max-w-5xl mx-auto px-6 py-20;
+  }
+
+  /* Etiqueta de sección (ej: "// experiencia") */
+  .section-tag {
+    @apply font-mono text-sm text-cyan tracking-[0.18em] uppercase mb-3 opacity-80;
+  }
+
+  /* Título principal de cada sección */
+  .section-title {
+    @apply text-3xl md:text-4xl font-semibold text-slate-100 mb-3;
+  }
+
+  /* Subtítulo descriptivo */
+  .section-sub {
+    @apply text-base text-slate-400 mb-10 leading-relaxed;
+  }
+
+  .section-divider {
+    @apply h-px bg-gradient-to-r from-cyan/30 to-transparent mb-10;
+  }
+
+  .card {
+    @apply bg-white/[0.025] border border-white/[0.06] rounded-xl transition-all duration-300;
+  }
+  .card:hover { @apply border-cyan/20; }
+
+  .btn-primary {
+    @apply bg-cyan text-[#070712] font-semibold px-6 py-2.5 rounded-lg
+           transition-all duration-200 hover:bg-[#33ddff] hover:-translate-y-0.5
+           active:translate-y-0 text-sm tracking-wide;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-cyan border border-cyan/40 px-6 py-2.5
+           rounded-lg transition-all duration-200 hover:bg-cyan/10 hover:border-cyan
+           active:scale-95 text-sm;
+  }
+
+  .mono { font-family: 'Space Mono', monospace; }
+
+  /* ── Textos de tarjetas ── */
+  /* Período en timeline */
+  .tl-period  { @apply font-mono text-xs text-cyan tracking-widest; }
+  /* Rol / título */
+  .tl-role    { @apply text-base font-semibold text-slate-100; }
+  /* Empresa */
+  .tl-company { @apply text-sm text-slate-500; }
+  /* Bullet descripción */
+  .tl-desc    { @apply text-sm text-slate-400 leading-relaxed; }
+
+  /* Tags de tecnología */
+  .tech-tag {
+    @apply font-mono text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300;
+  }
+
+  /* Títulos de cards de proyecto */
+  .proj-title { @apply text-base font-semibold text-slate-100; }
+  /* Descripción de cards */
+  .proj-desc  { @apply text-sm text-slate-400 leading-relaxed; }
+
+  /* Labels de formulario */
+  .form-label { @apply block font-mono text-xs text-slate-500 tracking-widest uppercase mb-1.5; }
+  /* Inputs de formulario */
+  .form-input {
+    @apply w-full bg-white/[0.04] border border-white/[0.08] rounded-lg
+           px-4 py-3 text-sm text-slate-200 placeholder-slate-600
+           outline-none focus:border-cyan/40 transition-colors font-sans;
+  }
+}
+
+/* Noise overlay */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+}
+
+.glow-cyan  { box-shadow: 0 0 20px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05); }
+.glow-text  { text-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
