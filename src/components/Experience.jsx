@@ -12,8 +12,28 @@ import { motion, useInView } from 'framer-motion'
 // Cada objeto representa un cargo. Orden: más reciente primero.
 const EXPERIENCE = [
   {
+    id: 0,
+    period:      'Jul 2026 – Actualidad',
+    role:        'Analista de Sistemas',
+    company:     'Laboratorio Microanálisis Integral',             // Nombre corto para la tarjeta
+    companyFull: 'Laboratorio Microanálisis Integral',             // Nombre completo
+    location:    'Cali, Colombia',
+    logo:        '/logo-microanalisis.png',                        // Ruta relativa desde /public
+    logoBg:      'bg-white/10',                                    // Fondo del contenedor del logo
+    tags: ['Infraestructura', 'Acronis', 'SQL', 'Reportería Ejecutiva', 'Soporte Técnico', 'Gestión de Accesos'],
+    current:   true,                                               // Muestra badge "Actual" y punto luminoso
+    highlight: 'Sector Salud / Laboratorio — Transformación digital',
+    desc: [
+      'Profesional orientado a la optimización de procesos, la administración de infraestructura tecnológica y el desarrollo de soluciones de software, impulsando la transformación digital de la organización mediante el diseño e implementación de herramientas a la medida.',
+      'Administro y monitoreo la infraestructura tecnológica, garantizando la disponibilidad y el rendimiento de servidores mediante mantenimiento preventivo y correctivo.',
+      'Gestiono los respaldos y la recuperación de información en entornos locales y en la nube (Acronis), realizando validaciones y auditorías con SQL para asegurar la integridad de los datos.',
+      'Desarrollo consultas y reportes ejecutivos para apoyar la toma de decisiones estratégicas, y brindo soporte técnico especializado en software, hardware y redes.',
+      'Administro usuarios, perfiles y credenciales de acceso, fortaleciendo la seguridad, continuidad y eficiencia de los servicios tecnológicos.',
+    ],
+  },
+  {
     id: 1,
-    period:      'May 2026 – Actualidad',
+    period:      'May 2026 – Jul 2026',
     role:        'Asistente TIC',
     company:     'Cootraemcali',                                    // Nombre corto para la tarjeta
     companyFull: 'Cooperativa de Trabajadores de Emcali',           // Nombre completo
@@ -21,14 +41,14 @@ const EXPERIENCE = [
     logo:        '/logo-cootraemcali.png',                          // Ruta relativa desde /public
     logoBg:      'bg-white/10',                                     // Fondo del contenedor del logo
     tags: ['Infraestructura', 'Seguridad de la Información', 'Bases de Datos', 'SARLAFT', 'Mesa de Ayuda', 'Backup/DR'],
-    current:   true,                                                // Muestra badge "Actual" y punto luminoso
+    current:   false,                                               // Ya no es el cargo actual
     highlight: 'Sector Financiero — Cooperativa de Ahorro y Crédito',
     desc: [
-      'Administro la plataforma de servidores y lidero el mantenimiento preventivo y correctivo de hardware y software para garantizar la continuidad operativa de los servicios financieros.',
-      'Ejecuto las políticas de seguridad de la información, administro bases de datos y gestiono el ciclo completo de copias de seguridad (custodia y restauración) conforme a estándares del sector.',
-      'Resuelvo requerimientos técnicos de usuarios y terceros, gestionando eficazmente la matriz de tickets y brindando soporte integral a equipos y aplicaciones de negocio.',
-      'Aseguro que todos los procesos tecnológicos cumplan con la Ley de Protección de Datos Personales y los manuales de gestión de riesgos SARLAFT de la entidad.',
-      'Realizo actualizaciones y parametrizaciones en los sistemas de información, entregando informes de gestión para la mejora continua de los servicios tecnológicos.',
+      'Administré la plataforma de servidores y lideré el mantenimiento preventivo y correctivo de hardware y software para garantizar la continuidad operativa de los servicios financieros.',
+      'Ejecuté las políticas de seguridad de la información, administré bases de datos y gestioné el ciclo completo de copias de seguridad (custodia y restauración) conforme a estándares del sector.',
+      'Resolví requerimientos técnicos de usuarios y terceros, gestionando eficazmente la matriz de tickets y brindando soporte integral a equipos y aplicaciones de negocio.',
+      'Aseguré que todos los procesos tecnológicos cumplieran con la Ley de Protección de Datos Personales y los manuales de gestión de riesgos SARLAFT de la entidad.',
+      'Realicé actualizaciones y parametrizaciones en los sistemas de información, entregando informes de gestión para la mejora continua de los servicios tecnológicos.',
     ],
   },
   {
@@ -199,7 +219,7 @@ export default function Experience() {
         <p className="section-tag">// experiencia</p>
         <h2 className="section-title">Trayectoria Profesional</h2>
         <p className="section-sub">
-          4+ años en sectores donde fallar no es una opción — finanzas, salud y educación
+          4+ años en sectores donde fallar no es una opción — laboratorio, finanzas, salud y educación
         </p>
         <div className="section-divider" />
       </motion.div>
