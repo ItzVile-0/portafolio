@@ -220,7 +220,7 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              {/* ── Badge flotante: Sector Salud ── (esquina superior izquierda) */}
+              {/* ── Badge flotante: Sector Financiero ── (esquina superior izquierda) */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -228,11 +228,11 @@ export default function Hero() {
                 className="absolute -top-4 -left-6 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">🏥</span>
+                  <span className="text-lg">🏦</span>
                   <div>
-                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Sector Salud</div>
+                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Sector Financiero</div>
                     {/* Color y fuente idénticos a todos los demás badges */}
-                    <div className="text-[9px] font-mono text-cyan/70">2+ años</div>
+                    <div className="text-[9px] font-mono text-cyan/70">Experiencia</div>
                   </div>
                 </div>
               </motion.div>
@@ -253,7 +253,7 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              {/* ── Badge flotante: Sector Financiero ── (lado derecho, centrado) */}
+              {/* ── Badge flotante: Sector Salud (actual) ── (lado derecho, centrado) */}
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -261,9 +261,9 @@ export default function Hero() {
                 className="absolute top-1/2 -right-8 -translate-y-1/2 bg-[#0d0d1f] border border-cyan/25 rounded-xl px-3 py-2 shadow-xl"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">🏦</span>
+                  <span className="text-lg">🏥</span>
                   <div>
-                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Sector Financiero</div>
+                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Sector Salud</div>
                     <div className="text-[9px] font-mono text-cyan/70">Actualidad</div>
                   </div>
                 </div>
