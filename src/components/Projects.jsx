@@ -12,6 +12,16 @@ import { motion, useInView } from 'framer-motion'
 // Cada objeto representa un proyecto con su metainformación
 const PROJECTS = [
   {
+    id: 0, emoji: '🛒',
+    title: 'EroselleShop — E-commerce',
+    desc:  'Tienda online completa desarrollada y desplegada por mí, actualmente en producción. Un e-commerce funcional con catálogo de productos, carrito de compras y experiencia de usuario cuidada. Proyecto personal end-to-end: desde el diseño hasta el despliegue en la web.',
+    tags:     ['Desarrollo Web', 'E-commerce', 'Frontend', 'Despliegue'],
+    accent:   '#6c63ff',
+    featured: true,
+    impact:   'Proyecto propio en producción',
+    link:     'https://eroselleshop.com',  // Enlace público al sitio en vivo
+  },
+  {
     id: 1, emoji: '🏥',
     title: 'Sistema de Automatización Hospitalaria',
     desc:  'Aplicaciones internas diseñadas para el Hospital San Juan de Dios de Cali. Automaticé flujos de trabajo administrativos y clínicos en un entorno donde la precisión es literalmente vital.',
@@ -120,11 +130,29 @@ function ProjectCard({ project, index }) {
         ))}
       </div>
 
-      {/* Pie de tarjeta — indica que es un proyecto empresarial privado */}
+      {/* Pie de tarjeta — muestra enlace al sitio si es público, o candado si es privado */}
       <div className="flex gap-3 mt-auto pt-3 border-t border-white/5">
-        <span className="text-xs text-slate-600 flex items-center gap-1.5 font-mono">
-          🔒 Proyecto Empresarial
-        </span>
+        {project.link ? (
+          // Proyecto público: botón que abre el sitio en una nueva pestaña
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-cyan flex items-center gap-1.5 font-mono font-semibold hover:text-white transition-colors"
+          >
+            {/* Ícono de enlace externo */}
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Visitar sitio →
+          </a>
+        ) : (
+          // Proyecto empresarial: indica que es privado
+          <span className="text-xs text-slate-600 flex items-center gap-1.5 font-mono">
+            🔒 Proyecto Empresarial
+          </span>
+        )}
       </div>
     </motion.div>
   )
