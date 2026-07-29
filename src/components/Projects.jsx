@@ -14,11 +14,11 @@ const PROJECTS = [
   {
     id: 0, emoji: '🛒',
     title: 'EroselleShop — E-commerce',
-    desc:  'Tienda online completa desarrollada y desplegada por mí, actualmente en producción. Un e-commerce funcional con catálogo de productos, carrito de compras y experiencia de usuario cuidada. Proyecto personal end-to-end: desde el diseño hasta el despliegue en la web.',
-    tags:     ['Desarrollo Web', 'E-commerce', 'Frontend', 'Despliegue'],
+    desc:  'Tienda online completa que desarrollé de extremo a extremo, hoy en línea y 100% funcional recibiendo pagos reales. Incluye catálogo de productos, carrito de compras, pasarela de pagos y experiencia de usuario cuidada. Me encargué tanto del frontend como del backend, cubriendo todo el ciclo hasta el despliegue.',
+    tags:     ['Fullstack', 'E-commerce', 'Pasarela de Pagos', 'Despliegue Web'],
     accent:   '#6c63ff',
     featured: true,
-    impact:   'Proyecto propio en producción',
+    impact:   'Tienda en vivo recibiendo pagos',
     link:     'https://eroselleshop.com',  // Enlace público al sitio en vivo
   },
   {
