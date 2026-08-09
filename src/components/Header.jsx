@@ -52,13 +52,15 @@ export default function Header() {
         <motion.a
           href="#hero"
           onClick={(e) => handleNav(e, '#hero')}
-          className="font-mono text-sm text-cyan tracking-[0.3em] hover:opacity-80 transition-opacity"
+          className="font-mono text-sm tracking-wider hover:opacity-80 transition-opacity flex items-center gap-0.5"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Iniciales de Camilo Alejandro Cabrera en estilo código */}
-          &lt;CAC /&gt;
+          {/* Prompt de terminal + nombre + cursor parpadeante */}
+          <span className="text-cyan/50">~/</span>
+          <span className="text-slate-200 font-semibold">camilo</span>
+          <span className="text-cyan animate-blink">▊</span>
         </motion.a>
 
         {/* ── Navegación de escritorio (oculta en móvil) ── */}

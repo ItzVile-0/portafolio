@@ -11,9 +11,11 @@ export default function Footer() {
     <footer className="border-t border-white/5 py-8 mt-8">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600 font-mono">
 
-        {/* Marca personal con iniciales en estilo código */}
-        <p>
-          &lt;<span className="text-cyan">CAC</span> /&gt; · Camilo A. Cabrera González
+        {/* Marca personal en estilo terminal */}
+        <p className="flex items-center gap-0.5">
+          <span className="text-cyan/50">~/</span>
+          <span className="text-slate-300 font-semibold">camilo</span>
+          <span className="text-slate-600 ml-1.5">· Camilo A. Cabrera González</span>
         </p>
 
         {/* Rol profesional y año (se actualiza automáticamente) */}
