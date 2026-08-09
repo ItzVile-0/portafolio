@@ -40,13 +40,25 @@ export default function Header() {
 
   return (
     <header
-      // Cambia el fondo al hacer scroll: transparente → oscuro con blur
+      // Cambia el fondo al hacer scroll: transparente → oscuro con blur.
+      // Usamos una sombra suave en lugar de un borde sólido para evitar
+      // la línea blanca brillante que aparecía al desplazarse.
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#070712]/95 backdrop-blur-md border-b border-cyan/10'
+          ? 'bg-[#070712]/90 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.5)]'
           : 'bg-transparent'
       }`}
     >
+      {/* Línea decorativa inferior sutil — degradado que se desvanece en los bordes,
+          solo visible al hacer scroll. Reemplaza el borde sólido anterior. */}
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-px transition-opacity duration-300 ${
+          scrolled ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(to right, transparent, rgba(0,212,255,0.25), transparent)',
+        }}
+      />
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* ── Logo / Marca personal ── */}
