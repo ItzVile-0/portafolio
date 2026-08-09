@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Logo from './Logo'
 
 // Lista de enlaces de navegación — label es lo que se muestra, href es el id de la sección
 const navLinks = [
@@ -52,15 +53,22 @@ export default function Header() {
         <motion.a
           href="#hero"
           onClick={(e) => handleNav(e, '#hero')}
-          className="font-mono text-sm tracking-wider hover:opacity-80 transition-opacity flex items-center gap-0.5"
+          className="group flex items-center gap-2.5 hover:opacity-90 transition-opacity"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Prompt de terminal + nombre + cursor parpadeante */}
-          <span className="text-cyan/50">~/</span>
-          <span className="text-slate-200 font-semibold">camilo</span>
-          <span className="text-cyan animate-blink">▊</span>
+          {/* Logo hexagonal animado */}
+          <Logo size={34} />
+          {/* Nombre + rol en dos líneas */}
+          <div className="hidden sm:flex flex-col leading-none">
+            <span className="font-mono text-sm font-semibold text-slate-100 tracking-wide group-hover:text-cyan transition-colors">
+              Camilo Cabrera
+            </span>
+            <span className="font-mono text-[10px] text-cyan/60 tracking-[0.15em] mt-0.5">
+              INGENIERO DE SISTEMAS
+            </span>
+          </div>
         </motion.a>
 
         {/* ── Navegación de escritorio (oculta en móvil) ── */}

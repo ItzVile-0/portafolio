@@ -3,6 +3,8 @@
 // Muestra nombre, rol y ubicación. El año se calcula automáticamente.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import Logo from './Logo'
+
 export default function Footer() {
   // Obtiene el año actual dinámicamente para no tener que actualizarlo manualmente
   const year = new Date().getFullYear()
@@ -11,12 +13,11 @@ export default function Footer() {
     <footer className="border-t border-white/5 py-8 mt-8">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600 font-mono">
 
-        {/* Marca personal en estilo terminal */}
-        <p className="flex items-center gap-0.5">
-          <span className="text-cyan/50">~/</span>
-          <span className="text-slate-300 font-semibold">camilo</span>
-          <span className="text-slate-600 ml-1.5">· Camilo A. Cabrera González</span>
-        </p>
+        {/* Marca personal con logo hexagonal */}
+        <div className="flex items-center gap-2.5">
+          <Logo size={28} />
+          <span className="text-slate-400 font-semibold">Camilo A. Cabrera González</span>
+        </div>
 
         {/* Rol profesional y año (se actualiza automáticamente) */}
         <p>
