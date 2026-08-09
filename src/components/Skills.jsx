@@ -154,7 +154,7 @@ export default function Skills() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-tag">// habilidades</p>
+        <p className="section-tag">habilidades</p>
         <h2 className="section-title">Stack Técnico & Competencias</h2>
         <p className="section-sub">Dominio real, probado en entornos de alta exigencia</p>
         <div className="section-divider" />
@@ -176,7 +176,7 @@ export default function Skills() {
         className="mb-12"
       >
         <p className="font-mono text-sm text-slate-500 tracking-widest mb-4 uppercase">
-          // tecnologías & herramientas
+          tecnologías & herramientas
         </p>
         <div className="flex flex-wrap gap-2.5">
           {TECH_STACK.map((tech, i) => (
@@ -205,7 +205,7 @@ export default function Skills() {
         transition={{ duration: 0.6 }}
       >
         <p className="font-mono text-sm text-slate-500 tracking-widest mb-4 uppercase">
-          // formación académica
+          formación académica
         </p>
         {/* Grid de tarjetas de títulos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

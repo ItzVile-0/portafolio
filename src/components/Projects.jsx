@@ -170,7 +170,7 @@ export default function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-tag">// proyectos</p>
+        <p className="section-tag">proyectos</p>
         <h2 className="section-title">Proyectos con Impacto Real</h2>
         <p className="section-sub">
           No prototipos de laboratorio — soluciones en producción donde cada línea de código importa

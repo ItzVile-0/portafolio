@@ -53,7 +53,7 @@ const EXPERIENCE = [
   },
   {
     id: 2,
-    period:      'Mar 2024 – May 2026',
+    period:      'Mar 2024 – Mar 2026',
     role:        'Auxiliar de Sistemas y Cartera',
     company:     'Hospital San Juan de Dios',
     companyFull: 'Hospital Universitario San Juan de Dios',
@@ -216,7 +216,7 @@ export default function Experience() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-tag">// experiencia</p>
+        <p className="section-tag">experiencia</p>
         <h2 className="section-title">Trayectoria Profesional</h2>
         <p className="section-sub">
           4+ años en sectores donde fallar no es una opción — laboratorio, finanzas, salud y educación

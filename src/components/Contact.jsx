@@ -93,7 +93,7 @@ export default function Contact() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-tag">// contacto</p>
+        <p className="section-tag">contacto</p>
         <h2 className="section-title">¿Hablamos?</h2>
         <p className="section-sub">Tengo disponibilidad inmediata — respondo en menos de 24 horas</p>
         <div className="section-divider" />
@@ -159,7 +159,7 @@ export default function Contact() {
 
           {/* ── Panel de disponibilidad ── */}
           <div className="p-5 rounded-xl bg-violet/5 border border-violet/15 mt-4">
-            <p className="font-mono text-xs text-violet/60 tracking-widest mb-3">// disponible para</p>
+            <p className="font-mono text-xs text-violet/60 tracking-widest mb-3">disponible para</p>
             <div className="space-y-2">
               {/* Lista de tipos de oportunidades */}
               {[
