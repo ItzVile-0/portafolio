@@ -176,6 +176,27 @@ export default function Contact() {
               ))}
             </div>
           </div>
+
+          {/* ── Tarjeta profesional COPNIA — matrícula del ingeniero ── */}
+          {/* Da credibilidad formal: acredita a Camilo como Ingeniero certificado */}
+          <div className="p-5 rounded-xl bg-cyan/[0.04] border border-cyan/20 mt-4 flex items-center gap-4">
+            {/* Ícono de credencial verificada */}
+            <div className="w-11 h-11 rounded-xl bg-cyan/10 flex items-center justify-center shrink-0">
+              <svg className="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] text-cyan/60 tracking-widest mb-1">
+                MATRÍCULA PROFESIONAL · COPNIA
+              </p>
+              <p className="text-sm font-semibold text-slate-200 mb-0.5">
+                Ingeniero de Sistemas certificado
+              </p>
+              <p className="font-mono text-xs text-slate-500">171122-0842239 VLL</p>
+            </div>
+          </div>
         </div>
 
         {/* ══════════════════════════════════
