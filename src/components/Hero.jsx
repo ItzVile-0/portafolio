@@ -145,8 +145,19 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex gap-4 flex-wrap mb-14">
               {/* Botón primario — lleva a la sección de proyectos */}
               <a href="#proyectos" className="btn-primary text-sm px-6 py-3">Ver mi trabajo →</a>
-              {/* Botón secundario — abre cliente de correo directamente */}
-              <a href="mailto:camiloalejo29@hotmail.es" className="btn-secondary text-sm px-6 py-3">Hablemos ahora</a>
+              {/* Botón de descarga de CV — abre/descarga el PDF */}
+              <a
+                href="/CV_Camilo_Cabrera.pdf"
+                download="CV_Camilo_Cabrera.pdf"
+                className="btn-secondary text-sm px-6 py-3 flex items-center gap-2"
+              >
+                {/* Ícono de descarga */}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Descargar CV
+              </a>
             </motion.div>
 
             {/* Estadísticas — métricas que resumen la carrera de Camilo */}

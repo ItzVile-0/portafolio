@@ -6,6 +6,7 @@
 
 import Header     from './components/Header'
 import Hero       from './components/Hero'
+import About      from './components/About'
 import Experience from './components/Experience'
 import Projects   from './components/Projects'
 import Skills     from './components/Skills'
@@ -39,6 +40,7 @@ export default function App() {
         <main>
           {/* Cada sección tiene un id para el scroll de navegación */}
           <section id="hero">        <Hero />       </section>
+          <section id="sobre-mi">    <About />      </section>
           <section id="experiencia"> <Experience /> </section>
           <section id="proyectos">   <Projects />   </section>
           <section id="skills">      <Skills />     </section>

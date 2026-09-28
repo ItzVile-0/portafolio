@@ -11,6 +11,7 @@ import Logo from './Logo'
 // Lista de enlaces de navegación — label es lo que se muestra, href es el id de la sección
 const navLinks = [
   { label: 'Introducción', href: '#hero'        },
+  { label: 'Sobre mí',     href: '#sobre-mi'    },
   { label: 'Experiencia',  href: '#experiencia' },
   { label: 'Proyectos',    href: '#proyectos'   },
   { label: 'Skills',       href: '#skills'      },
@@ -84,7 +85,7 @@ export default function Header() {
         </motion.a>
 
         {/* ── Navegación de escritorio (oculta en móvil) ── */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.href}
@@ -120,7 +121,7 @@ export default function Header() {
 
         {/* ── Botón hamburguesa para móvil ── */}
         <button
-          className="md:hidden text-slate-400 hover:text-cyan transition-colors"
+          className="lg:hidden text-slate-400 hover:text-cyan transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menú"
         >
@@ -141,7 +142,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}      // Empieza cerrado
             animate={{ opacity: 1, height: 'auto' }}  // Se expande al abrir
             exit={{ opacity: 0, height: 0 }}          // Se colapsa al cerrar
-            className="md:hidden bg-[#0d0d1f] border-b border-white/5"
+            className="lg:hidden bg-[#0d0d1f] border-b border-white/5"
           >
             <div className="px-6 py-4 flex flex-col gap-2">
               {navLinks.map((link) => (
