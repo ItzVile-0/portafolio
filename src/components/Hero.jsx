@@ -264,7 +264,7 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              {/* ── Badge flotante: Sector Salud (actual) ── (lado derecho, centrado) */}
+              {/* ── Badge flotante: Desarrollo Full-Stack (actual) ── (lado derecho, centrado) */}
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -272,9 +272,9 @@ export default function Hero() {
                 className="absolute top-1/2 -right-8 -translate-y-1/2 bg-[#0d0d1f] border border-cyan/25 rounded-xl px-3 py-2 shadow-xl"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">🏥</span>
+                  <span className="text-lg">💻</span>
                   <div>
-                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Sector Salud</div>
+                    <div className="text-[10px] font-semibold text-slate-200 leading-none mb-0.5">Full-Stack Dev</div>
                     <div className="text-[9px] font-mono text-cyan/70">Actualidad</div>
                   </div>
                 </div>

@@ -42,8 +42,8 @@ const CONTACT_LINKS = [
       </svg>
     ),
     label: 'LinkedIn',
-    value: 'linkedin.com/in/alejandro-gonzález-95464533b',
-    href:  'https://www.linkedin.com/in/alejandro-gonzález-95464533b',
+    value: 'linkedin.com/in/camilo-cabrera-95464533b',
+    href:  'https://www.linkedin.com/in/camilo-cabrera-95464533b',
   },
 ]
 

@@ -2,7 +2,8 @@
 // Experience.jsx  —  Línea de tiempo de experiencia laboral
 // Cada cargo se muestra como una tarjeta en una línea de tiempo vertical.
 // La tarjeta actual tiene un punto luminoso (cian) mientras las pasadas
-// tienen un punto gris. Cada tarjeta incluye el logo de la empresa.
+// tienen un punto gris. Cada tarjeta incluye el logo (imagen o emoji) y
+// una descripción en prosa de corrido.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useRef } from 'react'
@@ -10,69 +11,67 @@ import { motion, useInView } from 'framer-motion'
 
 // ── Datos de la trayectoria laboral ───────────────────────────────────────
 // Cada objeto representa un cargo. Orden: más reciente primero.
+// 'logo' es una imagen desde /public; si no hay, se usa 'logoEmoji'.
+// 'desc' es un único texto en prosa (no viñetas).
 const EXPERIENCE = [
   {
     id: 0,
-    period:      'Jul 2026 – Actualidad',
-    role:        'Analista de Sistemas',
-    company:     'Laboratorio Microanálisis Integral',             // Nombre corto para la tarjeta
-    companyFull: 'Laboratorio Microanálisis Integral',             // Nombre completo
+    period:      'Ago 2026 – Actualidad',
+    role:        'Desarrollador Full-Stack (Web y Móvil)',
+    company:     'Trabajo independiente',
+    companyFull: 'Trabajo independiente',
     location:    'Cali, Colombia',
-    logo:        '/logo-microanalisis.png',                        // Ruta relativa desde /public
-    logoBg:      'bg-white/10',                                    // Fondo del contenedor del logo
-    tags: ['Infraestructura', 'Acronis', 'SQL', 'Reportería Ejecutiva', 'Soporte Técnico', 'Gestión de Accesos'],
-    current:   true,                                               // Muestra badge "Actual" y punto luminoso
-    highlight: 'Sector Salud / Laboratorio — Transformación digital',
-    desc: [
-      'Profesional orientado a la optimización de procesos, la administración de infraestructura tecnológica y el desarrollo de soluciones de software, impulsando la transformación digital de la organización mediante el diseño e implementación de herramientas a la medida.',
-      'Administro y monitoreo la infraestructura tecnológica, garantizando la disponibilidad y el rendimiento de servidores mediante mantenimiento preventivo y correctivo.',
-      'Gestiono los respaldos y la recuperación de información en entornos locales y en la nube (Acronis), realizando validaciones y auditorías con SQL para asegurar la integridad de los datos.',
-      'Desarrollo consultas y reportes ejecutivos para apoyar la toma de decisiones estratégicas, y brindo soporte técnico especializado en software, hardware y redes.',
-      'Administro usuarios, perfiles y credenciales de acceso, fortaleciendo la seguridad, continuidad y eficiencia de los servicios tecnológicos.',
-    ],
+    logo:        '/logo-freelance.svg',
+    logoBg:      'bg-cyan/10',
+    tags: ['Next.js', 'React Native', 'NestJS', 'PostgreSQL', 'Docker', 'AWS'],
+    current:   true,
+    highlight: 'Freelance — Soluciones a medida para PYMES',
+    desc: 'Desarrollo aplicaciones web y móviles a la medida para negocios y PYMES con Next.js, React Native, NestJS y Node.js. Levanto requerimientos con cada cliente y traduzco necesidades de negocio en soluciones funcionales, usables y de rápida entrega. Modelo bases de datos relacionales en PostgreSQL e integro servicios de terceros como pasarelas de pago, autenticación y APIs REST, con control de versiones en Git/GitHub y despliegue continuo en la nube (Vercel, AWS, Docker). Además brindo mantenimiento, soporte y mejoras evolutivas post-entrega, asegurando la disponibilidad y la satisfacción del cliente.',
   },
   {
     id: 1,
     period:      'May 2026 – Jul 2026',
     role:        'Asistente TIC',
-    company:     'Cootraemcali',                                    // Nombre corto para la tarjeta
-    companyFull: 'Cooperativa de Trabajadores de Emcali',           // Nombre completo
+    company:     'Cootraemcali',
+    companyFull: 'Cooperativa Cootraemcali',
     location:    'Cali, Colombia',
-    logo:        '/logo-cootraemcali.png',                          // Ruta relativa desde /public
-    logoBg:      'bg-white/10',                                     // Fondo del contenedor del logo
-    tags: ['Infraestructura', 'Seguridad de la Información', 'Bases de Datos', 'SARLAFT', 'Mesa de Ayuda', 'Backup/DR'],
-    current:   false,                                               // Ya no es el cargo actual
+    logo:        '/logo-cootraemcali.png',
+    logoBg:      'bg-white/10',
+    tags: ['Soporte TI', 'Servidores', 'SARLAFT', 'Protección de Datos', 'Mesa de Ayuda'],
+    current:   false,
     highlight: 'Sector Financiero — Cooperativa de Ahorro y Crédito',
-    desc: [
-      'Administré la plataforma de servidores y lideré el mantenimiento preventivo y correctivo de hardware y software para garantizar la continuidad operativa de los servicios financieros.',
-      'Ejecuté las políticas de seguridad de la información, administré bases de datos y gestioné el ciclo completo de copias de seguridad (custodia y restauración) conforme a estándares del sector.',
-      'Resolví requerimientos técnicos de usuarios y terceros, gestionando eficazmente la matriz de tickets y brindando soporte integral a equipos y aplicaciones de negocio.',
-      'Aseguré que todos los procesos tecnológicos cumplieran con la Ley de Protección de Datos Personales y los manuales de gestión de riesgos SARLAFT de la entidad.',
-      'Realicé actualizaciones y parametrizaciones en los sistemas de información, entregando informes de gestión para la mejora continua de los servicios tecnológicos.',
-    ],
+    desc: 'Brindé soporte técnico integral resolviendo una matriz de más de 80 tickets mensuales de mesa de ayuda a usuarios, y administré una plataforma de cerca de 15 servidores que garantizaba la continuidad operativa de los servicios financieros. Realicé actualizaciones y parametrizaciones en los sistemas de información para asegurar su integración y correcto funcionamiento, aplicando en todo momento los controles de cumplimiento de Protección de Datos y SARLAFT propios del sector.',
   },
   {
     id: 2,
     period:      'Mar 2024 – Mar 2026',
     role:        'Auxiliar de Sistemas y Cartera',
     company:     'Hospital San Juan de Dios',
-    companyFull: 'Hospital Universitario San Juan de Dios',
+    companyFull: 'Hospital de San Juan de Dios',
     location:    'Cali, Colombia',
     logo:        '/logo-hsjd.png',
     logoBg:      'bg-red-950/40',
-    tags: ['Desarrollo de Software', 'Administración de Servidores', 'Ciberseguridad', 'Backup/DR', 'FT025', 'Circular 030'],
+    tags: ['Automatización', 'Circular 030', 'FT025', 'Servidores', 'Backup/DR', 'Soporte TI'],
     current:   false,
     highlight: 'Sector Salud — Entorno de misión crítica',
-    desc: [
-      'Diseñé e implementé aplicaciones internas que automatizaron flujos de trabajo hospitalarios, incrementando la eficiencia operativa del área de sistemas.',
-      'Administré proactivamente servidores y redes garantizando disponibilidad 24/7, incluyendo diseño y ejecución de planes de recuperación de desastres (backups).',
-      'Lideré el mantenimiento preventivo y correctivo del parque informático y gestioné adquisiciones TIC estratégicas para la entidad.',
-      'Especialista en el análisis y consolidación del informe crítico FT025 (Ingresos y Radicados) para reportes ante entes de control.',
-      'Construí técnicamente la Circular 030, gestionando trazabilidad de radicados, pagos, glosas y notas crédito para el equilibrio financiero de la cartera hospitalaria.',
-    ],
+    desc: 'Diseñé e implementé aplicaciones internas que automatizaron flujos de trabajo y redujeron los tiempos de procesamiento en un 35%, y construí técnicamente la Circular 030 con trazabilidad de más de 40.000 radicados, pagos, glosas y notas crédito. Garanticé la disponibilidad y el despliegue de los servicios mediante la administración de servidores, redes y planes de recuperación ante desastres. También brindé soporte técnico a los usuarios y consolidé informes críticos para entes de control (Ingresos y Radicados – FT025), cumpliendo el 100% de los plazos establecidos.',
   },
   {
     id: 3,
+    period:      'Oct 2022 – Mar 2024',
+    role:        'Desarrollador Full-Stack Freelance',
+    company:     'Proyectos independientes',
+    companyFull: 'Proyectos independientes',
+    location:    'Cali, Colombia',
+    logo:        '/logo-freelance.svg',
+    logoBg:      'bg-cyan/10',
+    tags: ['Next.js', 'NestJS', 'React', 'Node.js', 'PostgreSQL', 'Git'],
+    current:   false,
+    highlight: 'Freelance — Desarrollo web y e-commerce',
+    desc: 'Desarrollé aplicaciones web y tiendas e-commerce a medida de extremo a extremo con Next.js, NestJS, React y Node.js. Modelé bases de datos relacionales en PostgreSQL e integré APIs y servicios de terceros como pasarelas de pago y autenticación. Gestioné el control de versiones con Git y el despliegue en la nube (Vercel, AWS), realizando las entregas bajo metodología ágil.',
+  },
+  {
+    id: 4,
     period:      'Ene 2022 – Oct 2022',
     role:        'Coordinador de Salas de Cómputo',
     company:     'Universidad Libre',
@@ -80,32 +79,10 @@ const EXPERIENCE = [
     location:    'Cali, Colombia',
     logo:        '/logo-unilibre.png',
     logoBg:      'bg-red-950/30',
-    tags: ['Liderazgo Técnico', 'QA / Testing', 'Bases de Datos', 'Inventario TIC', 'Licencias de Software'],
+    tags: ['Liderazgo Técnico', 'QA / Testing', 'Bases de Datos', 'Inventario TIC'],
     current:   false,
     highlight: 'Sector Educativo — Liderazgo de equipos técnicos',
-    desc: [
-      'Coordiné y evalué el desempeño del personal técnico, asegurando el cumplimiento de estándares de servicio en todos los proyectos del equipo.',
-      'Lideré proyectos de desarrollo de software incluyendo la fase crítica de pruebas (QA) para garantizar la estabilidad y funcionalidad de los sistemas.',
-      'Administré bases de datos, inventarios y licencias de software especializado, optimizando el uso de los recursos tecnológicos de la institución.',
-    ],
-  },
-  {
-    id: 4,
-    period:      'Ago 2018 – Ago 2019',
-    role:        'Monitor de Salas de Cómputo',
-    company:     'Universidad Libre',
-    companyFull: 'Corporación Universidad Libre',
-    location:    'Cali, Colombia',
-    logo:        '/logo-unilibre.png',
-    logoBg:      'bg-red-950/30',
-    tags: ['Soporte Técnico', 'Mantenimiento HW/SW', 'Imágenes de Sistema', 'Inventario'],
-    current:   false,
-    highlight: 'Sector Educativo — Base técnica sólida',
-    desc: [
-      'Realicé mantenimiento preventivo y correctivo de hardware y software asegurando operatividad constante de más de 80 estaciones de trabajo académicas.',
-      'Proporcioné soporte técnico presencial a estudiantes y docentes, resolviendo incidencias críticas en tiempo real durante sesiones de clase.',
-      'Gestioné inventario de equipos e implementación de imágenes de sistema (formateo y software ofimático) garantizando estándares institucionales.',
-    ],
+    desc: 'Lideré proyectos de desarrollo de software, incluida la fase de pruebas, para garantizar la estabilidad y funcionalidad de los sistemas. Coordiné un equipo de 6 técnicos de soporte, evaluando su desempeño y el cumplimiento de los estándares de servicio, y administré bases de datos, inventarios y licencias de software especializado de la institución.',
   },
 ]
 
@@ -113,26 +90,21 @@ const EXPERIENCE = [
 function TimelineItem({ item, index }) {
   const ref    = useRef(null)
   // useInView: devuelve true cuando el elemento entra en pantalla
-  // once: true → la animación solo ocurre la primera vez
-  // margin: añade un margen de activación antes de que el elemento sea visible
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <motion.div
       ref={ref}
-      // Animación de entrada: viene desde la izquierda con fade
       initial={{ opacity: 0, x: -30 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      // Cada ítem espera 100ms más que el anterior (delay: index * 0.1)
       transition={{ duration: 0.55, delay: index * 0.1, ease: 'easeOut' }}
-      className="relative pl-10" // pl-10 deja espacio para el punto de la línea de tiempo
+      className="relative pl-10"
     >
-
       {/* Punto de la línea de tiempo — cian y luminoso si es el cargo actual */}
       <div className={`absolute left-0 top-2 w-3.5 h-3.5 rounded-full border-2 transition-all duration-500 -translate-x-1.5
         ${item.current
-          ? 'border-cyan bg-cyan shadow-[0_0_14px_rgba(0,212,255,0.65)]' // Activo: relleno cian con halo
-          : 'border-slate-600 bg-[#070712]'                               // Pasado: círculo vacío gris
+          ? 'border-cyan bg-cyan shadow-[0_0_14px_rgba(0,212,255,0.65)]'
+          : 'border-slate-600 bg-[#070712]'
         }`}
       />
 
@@ -142,18 +114,22 @@ function TimelineItem({ item, index }) {
         {/* ── Cabecera: logo + info ── */}
         <div className="flex items-start gap-4 mb-4">
 
-          {/* Contenedor del logo de la empresa */}
+          {/* Contenedor del logo: imagen de empresa o emoji si no hay logo */}
           <div className={`w-12 h-12 rounded-xl ${item.logoBg} border border-white/10 flex items-center justify-center shrink-0 overflow-hidden p-1`}>
-            <img
-              src={item.logo}
-              alt={`Logo ${item.company}`}
-              className="w-full h-full object-contain" // object-contain: no recorta el logo
-            />
+            {item.logo ? (
+              <img
+                src={item.logo}
+                alt={`Logo ${item.company}`}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <span className="text-2xl">{item.logoEmoji}</span>
+            )}
           </div>
 
           {/* Información del cargo */}
           <div className="flex-1 min-w-0">
-            {/* Badge de sector (ej: "Sector Financiero — Cooperativa de Ahorro y Crédito") */}
+            {/* Badge de sector / tipo de trabajo */}
             <span className="inline-block font-mono text-xs tracking-widest text-violet/80 bg-violet/10 border border-violet/20 rounded-full px-3 py-0.5 mb-2">
               {item.highlight}
             </span>
@@ -162,7 +138,7 @@ function TimelineItem({ item, index }) {
               <div>
                 {/* Período de trabajo */}
                 <p className="tl-period">{item.period}</p>
-                {/* Nombre del cargo — cambia a cian al hover gracias a "group" */}
+                {/* Nombre del cargo — cambia a cian al hover */}
                 <h3 className="tl-role mt-0.5 group-hover:text-cyan transition-colors">{item.role}</h3>
                 {/* Nombre de empresa y ciudad */}
                 <p className="tl-company mt-0.5">
@@ -175,7 +151,7 @@ function TimelineItem({ item, index }) {
               {/* Badge "Actual" — solo visible en el cargo actual */}
               {item.current && (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan/10 border border-cyan/20 font-mono text-xs text-cyan shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-cyan animate-pulse" /> {/* Punto pulsante */}
+                  <span className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
                   Actual
                 </span>
               )}
@@ -183,15 +159,8 @@ function TimelineItem({ item, index }) {
           </div>
         </div>
 
-        {/* Lista de logros y responsabilidades */}
-        <ul className="space-y-2.5 mb-5">
-          {item.desc.map((d, i) => (
-            <li key={i} className="tl-desc flex gap-2.5">
-              <span className="text-cyan/60 mt-1 shrink-0">›</span> {/* Flecha de viñeta */}
-              {d}
-            </li>
-          ))}
-        </ul>
+        {/* Descripción del cargo en prosa de corrido (un solo párrafo) */}
+        <p className="tl-desc mb-5">{item.desc}</p>
 
         {/* Tags de tecnologías / habilidades usadas en el cargo */}
         <div className="flex flex-wrap gap-2">
@@ -212,27 +181,26 @@ export default function Experience() {
       {/* Encabezado animado de la sección */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }} // Se anima cuando entra en el viewport
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
         <p className="section-tag">experiencia</p>
         <h2 className="section-title">Trayectoria Profesional</h2>
         <p className="section-sub">
-          4+ años en sectores donde fallar no es una opción — laboratorio, finanzas, salud y educación
+          4+ años combinando desarrollo de software, soporte TI e infraestructura en sectores críticos
         </p>
         <div className="section-divider" />
       </motion.div>
 
       {/* Contenedor de la línea de tiempo */}
       <div className="relative">
-        {/* Línea vertical decorativa — va de arriba abajo con degradado que desaparece */}
+        {/* Línea vertical decorativa con degradado */}
         <div className="absolute left-1.5 top-2 bottom-4 w-px bg-gradient-to-b from-cyan/40 via-slate-700/50 to-transparent" />
 
         {/* Lista de cargos */}
         <div className="space-y-8">
           {EXPERIENCE.map((item, i) => (
-            // Cada ítem recibe su índice para el delay de animación escalonada
             <TimelineItem key={item.id} item={item} index={i} />
           ))}
         </div>
