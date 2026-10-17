@@ -1,187 +1,120 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Projects.jsx  —  Galería de proyectos profesionales
-// Muestra tarjetas con descripción, tecnologías usadas e impacto generado.
-// Las tarjetas tienen un borde superior animado al hover y un badge "Destacado"
-// en los proyectos más relevantes.
+// Projects.jsx  —  Galería de proyectos (traducible ES/EN)
+// Los datos visuales (emoji, acento, destacado, enlaces) viven aquí;
+// título, descripción e impacto vienen del diccionario por clave.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useLang } from '../i18n/LanguageContext'
 
-// ── Datos de proyectos ────────────────────────────────────────────────────
-// Cada objeto representa un proyecto con su metainformación
-const PROJECTS = [
-  {
-    id: 0, emoji: '🛒',
-    title: 'EroselleShop — E-commerce',
-    desc:  'Tienda online completa que desarrollé de extremo a extremo, hoy en línea y 100% funcional recibiendo pagos reales. Incluye catálogo de productos, carrito de compras, pasarela de pagos y experiencia de usuario cuidada. Me encargué tanto del frontend como del backend, cubriendo todo el ciclo hasta el despliegue.',
-    tags:     ['Fullstack', 'E-commerce', 'Pasarela de Pagos', 'Despliegue Web'],
-    accent:   '#6c63ff',
-    featured: true,
-    impact:   'Tienda en vivo recibiendo pagos',
-    link:     'https://eroselleshop.com',  // Enlace público al sitio en vivo
-  },
-  {
-    id: 1, emoji: '🏥',
-    title: 'Sistema de Automatización Hospitalaria',
-    desc:  'Aplicaciones internas diseñadas para el Hospital San Juan de Dios de Cali. Automaticé flujos de trabajo administrativos y clínicos en un entorno donde la precisión es literalmente vital.',
-    tags:     ['Java', 'Automatización', 'Flujos de Trabajo', 'Sector Salud'],
-    accent:   '#00d4ff',  // Color del borde superior al hover
-    featured: true,       // Si es true, muestra el badge "★ Destacado"
-    impact:   'Eficiencia operativa hospitalaria',
-  },
-  {
-    id: 2, emoji: '📊',
-    title: 'Motor de Conciliación Circular 030',
-    desc:  'Solución técnica para la gestión y trazabilidad de radicados, pagos, glosas y notas crédito. Mantiene el equilibrio financiero de la cartera hospitalaria ante entes de control.',
-    tags:     ['Análisis de Datos', 'Excel Avanzado', 'Conciliación', 'Reporte Regulatorio'],
-    accent:   '#6c63ff',
-    featured: true,
-    impact:   'Control financiero de cartera',
-  },
-  {
-    id: 3, emoji: '📋',
-    title: 'Consolidador de Informes FT025',
-    desc:  'Análisis y consolidación del informe de Ingresos y Radicados para reportes ante entes de control del sector salud. Proceso crítico con cero margen de error.',
-    tags:     ['Reportería', 'Entes de Control', 'Sector Salud', 'Análisis'],
-    accent:   '#00d4ff',
-    featured: false,
-    impact:   'Cumplimiento regulatorio',
-  },
-  {
-    id: 4, emoji: '🛡️',
-    title: 'Plan de Continuidad de Negocio (DR)',
-    desc:  'Diseño y ejecución de planes de recuperación de desastres para infraestructura hospitalaria. Administración proactiva de servidores garantizando disponibilidad 24/7.',
-    tags:     ['Backup/DR', 'Servidores', 'Alta Disponibilidad', 'Ciberseguridad'],
-    accent:   '#6c63ff',
-    featured: false,
-    impact:   'Cero downtime en servicios críticos',
-  },
-  {
-    id: 5, emoji: '🔧',
-    title: 'Gestión de Infraestructura TIC',
-    desc:  'Administración integral del parque informático: mantenimiento preventivo y correctivo, cotizaciones estratégicas y adquisiciones TIC alineadas con las necesidades de la entidad.',
-    tags:     ['Infraestructura', 'Mantenimiento HW/SW', 'Gestión TIC', 'Inventario'],
-    accent:   '#00d4ff',
-    featured: false,
-    impact:   'Parque informático optimizado',
-  },
-  {
-    id: 6, emoji: '🤖',
-    title: 'Automatización con IA & Prompt Engineering',
-    desc:  'Flujos de trabajo aumentados con inteligencia artificial para optimizar análisis de datos, generación de informes y soporte técnico. IA aplicada a problemas reales del sector salud.',
-    tags:     ['Prompt Engineering', 'LLMs', 'Automatización', 'Python'],
-    accent:   '#6c63ff',
-    featured: false,
-    impact:   'Productividad aumentada con IA',
-  },
+// Metadatos de cada proyecto. 'key' enlaza con projects.items.<key> del diccionario.
+// link = sitio web público · github = repositorio · (ambos opcionales)
+const META = [
+  { key: 'eroselle',   emoji: '🛒', accent: '#6c63ff', featured: true,  link: 'https://eroselleshop.com', github: null },
+  { key: 'finanzas',   emoji: '📱', accent: '#00d4ff', featured: true,  link: null, github: 'https://github.com/ItzVile-0' },
+  { key: 'circular030',emoji: '📊', accent: '#6c63ff', featured: false, link: null, github: null },
+  { key: 'inventario', emoji: '📦', accent: '#00d4ff', featured: false, link: null, github: 'https://github.com/ItzVile-0' },
+  { key: 'ft025',      emoji: '📋', accent: '#00d4ff', featured: false, link: null, github: null },
+  { key: 'tickets',    emoji: '🎫', accent: '#6c63ff', featured: false, link: null, github: null },
 ]
 
-// ── Tarjeta individual de proyecto ────────────────────────────────────────
-function ProjectCard({ project, index }) {
+const TAGS = {
+  eroselle:    ['Fullstack', 'E-commerce', 'Pasarela de Pagos', 'Despliegue Web'],
+  finanzas:    ['React Native', 'Android / iOS', 'Finanzas', 'Móvil'],
+  circular030: ['Análisis de Datos', 'Excel Avanzado', 'Conciliación', 'Reportería'],
+  inventario:  ['Next.js', 'PostgreSQL', 'Docker', 'CI/CD'],
+  ft025:       ['Reportería', 'Entes de Control', 'Sector Salud', 'Análisis'],
+  tickets:     ['Next.js', 'NestJS', 'React Native', 'Prisma'],
+}
+
+function ProjectCard({ meta, data, index, labels }) {
   const ref    = useRef(null)
-  // Se activa cuando la tarjeta entra en el viewport
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
     <motion.div
       ref={ref}
-      // Animación: sube desde abajo con fade
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      // El delay varía según la columna (index % 3) para efecto escalonado en el grid
       transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
       className="card p-6 group relative overflow-hidden flex flex-col"
     >
-      {/* Borde superior de color — invisible por defecto, aparece al hover */}
-      <div
-        className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: `linear-gradient(to right, ${project.accent}, #6c63ff)` }}
-      />
+      <div className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+           style={{ background: `linear-gradient(to right, ${meta.accent}, #6c63ff)` }} />
 
-      {/* Badge "Destacado" — solo en proyectos con featured: true */}
-      {project.featured && (
+      {meta.featured && (
         <span className="absolute top-5 right-5 font-mono text-xs px-2.5 py-0.5 bg-cyan/10 border border-cyan/20 rounded-full text-cyan">
-          ★ Destacado
+          {labels.featured}
         </span>
       )}
 
-      {/* Emoji representativo del proyecto */}
-      <span className="text-3xl mb-4 block">{project.emoji}</span>
+      <span className="text-3xl mb-4 block">{meta.emoji}</span>
+      <h3 className="proj-title mb-2 group-hover:text-cyan transition-colors duration-200">{data.title}</h3>
+      <p className="proj-desc mb-4 flex-1">{data.desc}</p>
 
-      {/* Título — cambia a cian al hover gracias a la clase "group" del padre */}
-      <h3 className="proj-title mb-2 group-hover:text-cyan transition-colors duration-200">
-        {project.title}
-      </h3>
-
-      {/* Descripción del proyecto */}
-      <p className="proj-desc mb-4 flex-1">{project.desc}</p>
-
-      {/* Indicador de impacto — resume el valor generado */}
       <div className="mb-4 flex items-center gap-2">
-        <span className="text-xs text-cyan/60 font-mono">→ impacto:</span>
-        <span className="text-xs text-cyan font-mono font-semibold">{project.impact}</span>
+        <span className="text-xs text-cyan/60 font-mono">{labels.impact}</span>
+        <span className="text-xs text-cyan font-mono font-semibold">{data.impact}</span>
       </div>
 
-      {/* Lista de tecnologías usadas en el proyecto */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {project.tags.map((t) => (
-          <span key={t} className="tech-tag">{t}</span>
+        {TAGS[meta.key].map((tag) => (
+          <span key={tag} className="tech-tag">{tag}</span>
         ))}
       </div>
 
-      {/* Pie de tarjeta — muestra enlace al sitio si es público, o candado si es privado */}
-      <div className="flex gap-3 mt-auto pt-3 border-t border-white/5">
-        {project.link ? (
-          // Proyecto público: botón que abre el sitio en una nueva pestaña
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-cyan flex items-center gap-1.5 font-mono font-semibold hover:text-white transition-colors"
-          >
-            {/* Ícono de enlace externo */}
+      {/* Pie: enlace al sitio, a GitHub, o marca de proyecto empresarial */}
+      <div className="flex gap-4 mt-auto pt-3 border-t border-white/5">
+        {meta.link && (
+          <a href={meta.link} target="_blank" rel="noopener noreferrer"
+             className="text-xs text-cyan flex items-center gap-1.5 font-mono font-semibold hover:text-white transition-colors">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-            Visitar sitio →
+            {labels.visit}
           </a>
-        ) : (
-          // Proyecto empresarial: indica que es privado
-          <span className="text-xs text-slate-600 flex items-center gap-1.5 font-mono">
-            🔒 Proyecto Empresarial
-          </span>
+        )}
+        {meta.github && (
+          <a href={meta.github} target="_blank" rel="noopener noreferrer"
+             className="text-xs text-cyan flex items-center gap-1.5 font-mono font-semibold hover:text-white transition-colors">
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            {labels.viewGithub}
+          </a>
+        )}
+        {!meta.link && !meta.github && (
+          <span className="text-xs text-slate-600 flex items-center gap-1.5 font-mono">{labels.enterprise}</span>
         )}
       </div>
     </motion.div>
   )
 }
 
-// ── Componente principal de la sección ────────────────────────────────────
 export default function Projects() {
+  const { t } = useLang()
+  const items = t('projects.items')
+  const labels = {
+    impact: t('projects.impact'),
+    visit: t('projects.visit'),
+    viewGithub: t('projects.viewGithub'),
+    enterprise: t('projects.enterprise'),
+    featured: t('projects.featured'),
+  }
+
   return (
     <div className="section-wrapper">
-
-      {/* Encabezado de la sección */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="section-tag">proyectos</p>
-        <h2 className="section-title">Proyectos con Impacto Real</h2>
-        <p className="section-sub">
-          No prototipos de laboratorio — soluciones en producción donde cada línea de código importa
-        </p>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <p className="section-tag">{t('projects.tag')}</p>
+        <h2 className="section-title">{t('projects.title')}</h2>
+        <p className="section-sub">{t('projects.subtitle')}</p>
         <div className="section-divider" />
       </motion.div>
 
-      {/* Grid responsivo: 1 col en móvil, 2 en tablet, 3 en desktop */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} />
+        {META.map((meta, i) => (
+          <ProjectCard key={meta.key} meta={meta} data={items[meta.key]} index={i} labels={labels} />
         ))}
       </div>
     </div>
