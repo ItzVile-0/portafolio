@@ -61,12 +61,12 @@ export default function Hero() {
   ]
 
   return (
-    <div className="relative min-h-screen flex items-center pt-24 pb-12">
+    <div className="relative lg:min-h-screen flex items-center pt-28 pb-12 lg:pt-24">
       <div className="absolute right-0 top-1/4 w-[500px] h-[500px] rounded-full bg-cyan/5 blur-[130px] pointer-events-none" />
       <div className="absolute left-1/4 bottom-10 w-[300px] h-[300px] rounded-full bg-violet/5 blur-[100px] pointer-events-none" />
 
       <div className="section-wrapper w-full">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-16">
 
           {/* ── Columna izquierda: texto ── */}
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex-1 max-w-2xl">
@@ -141,7 +141,7 @@ export default function Hero() {
 
               {/* Badge: Ciberseguridad */}
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.5 }}
-                className="absolute -bottom-4 -right-4 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
+                className="hidden sm:block absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-4 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🛡️</span>
                   <div>
@@ -153,7 +153,7 @@ export default function Hero() {
 
               {/* Badge: Sector Financiero */}
               <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.5 }}
-                className="absolute -top-4 -left-6 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
+                className="hidden sm:block absolute -top-3 -left-1 sm:-top-4 sm:-left-6 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🏦</span>
                   <div>
@@ -165,7 +165,7 @@ export default function Hero() {
 
               {/* Badge: Sector Académico */}
               <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5, duration: 0.5 }}
-                className="absolute -bottom-14 -left-2 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
+                className="hidden sm:block absolute -bottom-12 left-0 sm:-bottom-14 sm:-left-2 bg-[#0d0d1f] border border-cyan/20 rounded-xl px-3 py-2 shadow-xl">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🎓</span>
                   <div>
@@ -177,7 +177,7 @@ export default function Hero() {
 
               {/* Badge: Full-Stack Dev (actual) */}
               <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.7, duration: 0.5 }}
-                className="absolute top-1/2 -right-8 -translate-y-1/2 bg-[#0d0d1f] border border-cyan/25 rounded-xl px-3 py-2 shadow-xl">
+                className="hidden sm:block absolute top-1/2 -right-8 -translate-y-1/2 bg-[#0d0d1f] border border-cyan/25 rounded-xl px-3 py-2 shadow-xl">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">💻</span>
                   <div>

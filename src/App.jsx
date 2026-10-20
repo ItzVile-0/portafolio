@@ -17,7 +17,7 @@ export default function App() {
   return (
     // Contenedor principal: fondo oscuro, altura mínima de pantalla completa
     // La clase "noise" agrega una textura de ruido sutil (definida en index.css)
-    <div className="relative bg-[#070712] min-h-screen noise">
+    <div className="relative bg-[#070712] min-h-screen noise overflow-x-hidden">
 
       {/* ── Fondo decorativo: grid de líneas sutiles ── */}
       {/* pointer-events-none: el grid no interfiere con clics del usuario */}
