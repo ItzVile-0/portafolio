@@ -85,7 +85,7 @@ export const translations = {
         },
         {
           period: 'Mar 2024 – Mar 2026',
-          role: 'Auxiliar de Sistemas y Cartera',
+          role: 'Tecnólogo en Sistemas',
           company: 'Hospital San Juan de Dios',
           highlight: 'Sector Salud — Entorno de misión crítica',
           desc: 'Diseñé e implementé aplicaciones internas que automatizaron flujos de trabajo y redujeron los tiempos de procesamiento en un 35%, y construí técnicamente la Circular 030 con trazabilidad de más de 40.000 radicados, pagos, glosas y notas crédito. Garanticé la disponibilidad y el despliegue de los servicios mediante la administración de servidores, redes y planes de recuperación ante desastres. También brindé soporte técnico a los usuarios y consolidé informes críticos para entes de control (Ingresos y Radicados – FT025), cumpliendo el 100% de los plazos establecidos.',
@@ -290,7 +290,7 @@ export const translations = {
         },
         {
           period: 'Mar 2024 – Mar 2026',
-          role: 'Systems & Portfolio Assistant',
+          role: 'Systems Technologist',
           company: 'Hospital San Juan de Dios',
           highlight: 'Health Sector — Mission-critical environment',
           desc: 'I designed and implemented internal applications that automated workflows and reduced processing times by 35%, and technically built Circular 030 with traceability of over 40,000 filings, payments, disputes and credit notes. I ensured the availability and deployment of services through server and network administration and disaster recovery plans. I also provided technical support to users and consolidated critical reports for regulatory bodies (Income & Filings – FT025), meeting 100% of the established deadlines.',
