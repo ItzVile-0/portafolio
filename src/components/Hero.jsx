@@ -50,8 +50,33 @@ const itemVariants = {
 }
 
 export default function Hero() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const role = useTypewriter(t('hero.roles'))
+
+  // Descarga el CV del idioma activo leyendo `lang` en el momento del clic.
+  // Se hace con fetch + blob para forzar la descarga del archivo correcto
+  // sin depender del atributo download (que algunos navegadores ignoran
+  // cuando el href es dinámico o el PDF está cacheado).
+  const downloadCV = async (e) => {
+    e.preventDefault()
+    const file = lang === 'en' ? '/CV_Camilo_Cabrera_EN.pdf' : '/CV_Camilo_Cabrera.pdf'
+    const name = lang === 'en' ? 'CV_Camilo_Cabrera_EN.pdf' : 'CV_Camilo_Cabrera.pdf'
+    try {
+      const res = await fetch(file, { cache: 'no-store' }) // no-store evita servir una versión cacheada
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = name
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      // Si el fetch falla (p. ej. sin red), abre el PDF directamente como respaldo
+      window.open(file, '_blank')
+    }
+  }
 
   const stats = [
     { num: '4+', label: t('hero.stats.years')    },
@@ -99,7 +124,7 @@ export default function Hero() {
 
             <motion.div variants={itemVariants} className="flex gap-4 flex-wrap mb-14">
               <a href="#proyectos" className="btn-primary text-sm px-6 py-3">{t('hero.btnWork')}</a>
-              <a href="/CV_Camilo_Cabrera.pdf" download="CV_Camilo_Cabrera.pdf" className="btn-secondary text-sm px-6 py-3 flex items-center gap-2">
+              <a href="#" onClick={downloadCV} className="btn-secondary text-sm px-6 py-3 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
