@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/5 py-8 mt-8">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col gap-4 text-xs text-slate-600 font-mono">
+      <div className="max-w-5xl mx-auto px-6 flex flex-col gap-4 text-xs text-slate-500 font-mono">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <Logo size={28} />

@@ -85,7 +85,7 @@ function ProjectCard({ meta, data, index, labels }) {
           </a>
         )}
         {!meta.link && !meta.github && (
-          <span className="text-xs text-slate-600 flex items-center gap-1.5 font-mono">{labels.enterprise}</span>
+          <span className="text-xs text-slate-500 flex items-center gap-1.5 font-mono">{labels.enterprise}</span>
         )}
       </div>
     </motion.div>

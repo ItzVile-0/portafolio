@@ -132,3 +132,25 @@
   filter: blur(80px);
   pointer-events: none;
 }
+
+/* ── Accesibilidad: respeto a "reducir movimiento" ──
+   Usuarios con sensibilidad al movimiento (vértigo, migrañas) activan esta
+   preferencia en su sistema. Desactivamos animaciones largas y el scroll suave
+   automático, dejando solo transiciones mínimas. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Foco visible para navegación por teclado ──
+   Un contorno cian claro cuando se navega con Tab, sin afectar los clics
+   de ratón (focus-visible solo aplica a teclado). */
+:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
